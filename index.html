@@ -7,43 +7,30 @@
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@400;500&family=DM+Sans:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg:        #f5f4f8;
-  --surface:   #ffffff;
-  --surface2:  #f0eef6;
-  --surface3:  #e8e4f2;
-  --border:    rgba(110,80,180,0.12);
-  --border2:   rgba(110,80,180,0.22);
-  --text:      #1a1628;
-  --muted:     #7a6f95;
-  --hint:      #b0a8c8;
-  --purple:    #7c3aed;
-  --purple2:   #a855f7;
-  --purple-lt: #ede9fe;
-  --purple-dk: #5b21b6;
-  --lavender:  #c4b5fd;
-  --gray:      #6b7280;
-  --gray-lt:   #f3f4f6;
-  --green:     #059669; --green-lt: #d1fae5;
-  --red:       #dc2626; --red-lt:   #fee2e2;
-  --amber:     #d97706; --amber-lt: #fef3c7;
-  --blue:      #2563eb; --blue-lt:  #dbeafe;
-  --pink:      #db2777; --pink-lt:  #fce7f3;
-  --teal:      #0d9488; --teal-lt:  #ccfbf1;
-  --radius:    14px;
-  --radius-sm: 8px;
-  --shadow:    0 1px 3px rgba(110,80,180,0.08),0 4px 16px rgba(110,80,180,0.06);
-  --shadow-sm: 0 1px 2px rgba(110,80,180,0.06);
+  --bg:#f5f4f8;--surface:#ffffff;--surface2:#f0eef6;--surface3:#e8e4f2;
+  --border:rgba(110,80,180,0.12);--border2:rgba(110,80,180,0.22);
+  --text:#1a1628;--muted:#7a6f95;--hint:#b0a8c8;
+  --purple:#7c3aed;--purple2:#a855f7;--purple-lt:#ede9fe;--purple-dk:#5b21b6;--lavender:#c4b5fd;
+  --gray:#6b7280;--gray-lt:#f3f4f6;
+  --green:#059669;--green-lt:#d1fae5;
+  --red:#dc2626;--red-lt:#fee2e2;
+  --amber:#d97706;--amber-lt:#fef3c7;
+  --blue:#2563eb;--blue-lt:#dbeafe;
+  --pink:#db2777;--pink-lt:#fce7f3;
+  --teal:#0d9488;--teal-lt:#ccfbf1;
+  --radius:14px;--radius-sm:8px;
+  --shadow:0 1px 3px rgba(110,80,180,0.08),0 4px 16px rgba(110,80,180,0.06);
+  --shadow-sm:0 1px 2px rgba(110,80,180,0.06);
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{font-size:16px}
 body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;line-height:1.6}
 .app{display:flex;min-height:100vh}
 
-/* SIDEBAR */
 .sidebar{width:230px;background:var(--surface);border-right:1px solid var(--border);display:flex;flex-direction:column;position:sticky;top:0;height:100vh;flex-shrink:0;box-shadow:2px 0 12px rgba(110,80,180,0.05)}
 .logo{padding:22px 20px 18px;border-bottom:1px solid var(--border)}
 .logo-top{display:flex;align-items:center;gap:10px}
-.logo-icon{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,var(--purple),var(--purple2));display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:800;font-size:15px;color:white;flex-shrink:0;letter-spacing:-0.5px}
+.logo-icon{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,var(--purple),var(--purple2));display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:800;font-size:15px;color:white;flex-shrink:0}
 .logo-name{font-family:'Syne',sans-serif;font-weight:800;font-size:18px;color:var(--text);letter-spacing:-0.4px}
 .logo-sub{font-size:11px;color:var(--muted);margin-top:5px;font-family:'DM Mono',monospace}
 nav{padding:12px 0;flex:1}
@@ -52,8 +39,8 @@ nav{padding:12px 0;flex:1}
 .nav-item:hover{color:var(--purple);background:var(--purple-lt)}
 .nav-item.active{color:var(--purple);border-left-color:var(--purple);background:var(--purple-lt);font-weight:600}
 .nav-dot{width:28px;height:28px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
+.nav-badge{font-size:10px;font-family:'DM Mono',monospace;padding:2px 7px;border-radius:99px;background:var(--purple-lt);color:var(--purple);border:1px solid var(--lavender);margin-left:auto}
 
-/* MAIN */
 .main{flex:1;padding:36px 40px;max-width:860px}
 .section{display:none;animation:fadeIn 0.18s ease}
 .section.active{display:block}
@@ -110,11 +97,19 @@ nav{padding:12px 0;flex:1}
 .btn-primary:hover{background:var(--purple-dk);transform:translateY(-1px);box-shadow:0 4px 14px rgba(124,58,237,0.35)}
 .btn-ghost{background:var(--surface);color:var(--text);border:1px solid var(--border2)}
 .btn-ghost:hover{background:var(--purple-lt);border-color:var(--purple);color:var(--purple)}
-.btn-ai{background:linear-gradient(135deg,var(--purple),var(--purple2));color:white;box-shadow:0 2px 8px rgba(124,58,237,0.28)}
-.btn-ai:hover{opacity:0.92;transform:translateY(-1px)}
+.btn-soon{background:var(--surface2);color:var(--muted);border:1px solid var(--border);cursor:default;opacity:0.85}
 
 .empty{text-align:center;padding:48px 0;color:var(--hint);font-size:14px}
 .empty-icon{font-size:30px;margin-bottom:8px}
+
+/* COMING SOON CARD */
+.coming-soon-card{text-align:center;padding:52px 32px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow-sm);position:relative;overflow:hidden}
+.coming-soon-card::before{content:'';position:absolute;top:-60px;right:-60px;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,rgba(124,58,237,0.07) 0%,transparent 70%);pointer-events:none}
+.coming-soon-card::after{content:'';position:absolute;bottom:-40px;left:-40px;width:160px;height:160px;border-radius:50%;background:radial-gradient(circle,rgba(168,85,247,0.06) 0%,transparent 70%);pointer-events:none}
+.cs-icon{width:64px;height:64px;border-radius:18px;background:var(--purple-lt);border:1px solid var(--lavender);display:flex;align-items:center;justify-content:center;font-size:28px;margin:0 auto 18px}
+.cs-title{font-family:'Syne',sans-serif;font-size:22px;font-weight:800;color:var(--text);margin-bottom:10px;letter-spacing:-0.4px}
+.cs-desc{font-size:14px;color:var(--muted);max-width:340px;margin:0 auto;line-height:1.7}
+.cs-badge{margin-top:22px;font-family:'DM Mono',monospace;font-size:11px;color:var(--purple);background:var(--purple-lt);display:inline-block;padding:5px 16px;border-radius:99px;border:1px solid var(--lavender);letter-spacing:0.5px}
 
 .challenge-hero{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:28px;margin-bottom:24px;box-shadow:var(--shadow);border-left:4px solid var(--purple)}
 .challenge-week{font-family:'DM Mono',monospace;font-size:11px;color:var(--purple);background:var(--purple-lt);border:1px solid var(--lavender);padding:3px 10px;border-radius:99px;display:inline-block;margin-bottom:12px}
@@ -148,8 +143,6 @@ nav{padding:12px 0;flex:1}
 .btn-cancel{background:none;border:1px solid var(--border2);color:var(--muted);font-size:13px;padding:8px 16px;border-radius:var(--radius-sm);cursor:pointer;font-family:'DM Sans',sans-serif;transition:all 0.15s}
 .btn-cancel:hover{color:var(--text);background:var(--surface2)}
 
-.loading{font-size:13px;color:var(--purple);font-family:'DM Mono',monospace;padding:24px 0;animation:pulse 1.2s infinite}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.3}}
 .sub-hdr{font-size:11px;font-weight:700;color:var(--muted);letter-spacing:1px;text-transform:uppercase;font-family:'DM Mono',monospace;margin:28px 0 12px}
 
 ::-webkit-scrollbar{width:5px}
@@ -158,7 +151,7 @@ nav{padding:12px 0;flex:1}
 
 @media(max-width:640px){
   .sidebar{width:60px}
-  .logo-name,.logo-sub,.nav-item span{display:none}
+  .logo-name,.logo-sub,.nav-item span,.nav-badge{display:none}
   .nav-item{justify-content:center;padding:12px}
   .main{padding:20px 16px}
 }
@@ -177,13 +170,15 @@ nav{padding:12px 0;flex:1}
     <nav>
       <div class="nav-section">Sections</div>
       <div class="nav-item active" onclick="showTab('til',this)"><div class="nav-dot">📝</div><span>TIL Board</span></div>
-      <div class="nav-item" onclick="showTab('challenge',this)"><div class="nav-dot">⚡</div><span>Weekly Challenge</span></div>
+      <div class="nav-item" onclick="showTab('challenge',this)"><div class="nav-dot">⚡</div><span>Weekly Challenge</span><span class="nav-badge">Soon</span></div>
       <div class="nav-item" onclick="showTab('bugs',this)"><div class="nav-dot">🐛</div><span>Bug Hall of Fame</span></div>
       <div class="nav-item" onclick="showTab('jokes',this)"><div class="nav-dot">😂</div><span>Dev Jokes</span></div>
     </nav>
   </aside>
 
   <main class="main">
+
+    <!-- TIL -->
     <section id="tab-til" class="section active">
       <div class="page-header">
         <div><div class="page-title">TIL Board</div><div class="page-desc">Drop something you learned today</div></div>
@@ -194,10 +189,11 @@ nav{padding:12px 0;flex:1}
       <div id="til-grid"></div>
     </section>
 
+    <!-- CHALLENGE -->
     <section id="tab-challenge" class="section">
       <div class="page-header">
-        <div><div class="page-title">Weekly Challenge</div><div class="page-desc">AI-generated — compete with your team</div></div>
-        <button class="btn btn-ai" onclick="generateChallenge()">✨ Generate new</button>
+        <div><div class="page-title">Weekly Challenge</div><div class="page-desc">AI-generated coding challenges for your team</div></div>
+        <button class="btn btn-soon" onclick="showComingSoon()">✨ Generate new</button>
       </div>
       <div id="challenge-area"></div>
       <div class="sub-hdr">Team Submissions</div>
@@ -205,6 +201,7 @@ nav{padding:12px 0;flex:1}
       <div id="submissions-grid"></div>
     </section>
 
+    <!-- BUGS -->
     <section id="tab-bugs" class="section">
       <div class="page-header">
         <div><div class="page-title">Bug Hall of Fame</div><div class="page-desc">Legends of suffering, preserved forever</div></div>
@@ -213,6 +210,7 @@ nav{padding:12px 0;flex:1}
       <div id="bugs-grid"></div>
     </section>
 
+    <!-- JOKES -->
     <section id="tab-jokes" class="section">
       <div class="page-header">
         <div><div class="page-title">Dev Jokes</div><div class="page-desc">We laugh so we don't cry</div></div>
@@ -223,9 +221,11 @@ nav{padding:12px 0;flex:1}
       <button class="btn btn-ghost" style="margin-bottom:14px" onclick="openModal('joke')">+ Submit a joke</button>
       <div id="team-jokes-grid"></div>
     </section>
+
   </main>
 </div>
 
+<!-- MODAL -->
 <div class="modal-overlay" id="modal-overlay">
   <div class="modal">
     <div class="modal-title" id="modal-title"></div>
@@ -242,7 +242,7 @@ const JOKES=[
   {q:"Why did the developer go broke?",a:"They used up all their cache."},
   {q:"What's a programmer's favourite hangout?",a:"Foo Bar."},
   {q:"Why do Java developers wear glasses?",a:"Because they don't C#."},
-  {q:"Partner says: get milk, if eggs, get a dozen. The programmer returned with...",a:"12 gallons of milk. They had eggs."},
+  {q:"Partner says: get milk, if they have eggs get a dozen. Programmer returns with...",a:"12 gallons of milk. They had eggs."},
   {q:"Why did the programmer quit their job?",a:"Because they didn't get arrays."},
   {q:"How do you comfort a JavaScript bug?",a:"You console it."},
   {q:"What do you call a dev who doesn't comment their code?",a:"A job security specialist."},
@@ -264,7 +264,7 @@ const TAG_STYLES={
   'Tip':'background:#f0fdf4;color:#166534;border-color:#86efac',
 };
 
-let state={tils:[],tilLikes:{},tilFilter:'all',bugs:[],bugLikes:{},submissions:[],subVotes:{},challenge:null,teamJokes:[],jokeVotes:{},jokeIdx:0,customTags:[]};
+let state={tils:[],tilLikes:{},tilFilter:'all',bugs:[],bugLikes:{},submissions:[],subVotes:{},teamJokes:[],jokeVotes:{},jokeIdx:0,customTags:[]};
 let currentModal='';
 
 function initials(n){if(!n)return'?';return n.split(' ').map(w=>w[0]).join('').toUpperCase().slice(0,2)}
@@ -283,7 +283,6 @@ function loadAll(){
   state.bugLikes=lsGet('bugLikes')||{};
   state.submissions=lsGet('submissions')||[];
   state.subVotes=lsGet('subVotes')||{};
-  state.challenge=lsGet('challenge')||null;
   state.teamJokes=lsGet('teamJokes')||[];
   state.jokeVotes=lsGet('jokeVotes')||{};
   state.customTags=lsGet('customTags')||[];
@@ -316,6 +315,7 @@ function showTab(tab,el){
   el.classList.add('active');
 }
 
+/* ── TIL ── */
 function renderTIL(){
   const filtered=state.tilFilter==='all'?state.tils:state.tils.filter(p=>p.tag===state.tilFilter);
   const usedTags=[...new Set(state.tils.map(p=>p.tag))];
@@ -326,38 +326,38 @@ function renderTIL(){
   const grid=document.getElementById('til-grid');
   if(!filtered.length){grid.innerHTML='<div class="empty"><div class="empty-icon">📝</div>No TILs for this tag yet. Be the first!</div>';return}
   grid.innerHTML=filtered.slice().reverse().map(p=>{
-    const lc=p.likes+(state.tilLikes[p.id]?1:0);
-    const liked=!!state.tilLikes[p.id];
+    const lc=p.likes+(state.tilLikes[p.id]?1:0);const liked=!!state.tilLikes[p.id];
     return`<div class="card"><div class="card-top"><div class="card-meta"><div class="avatar ${avColor(p.author)}">${initials(p.author)}</div><div><div class="card-author">${p.author||'Anonymous'}</div><div class="card-time">${timeAgo(p.ts)}</div></div></div>${tagPill(p.tag)}</div><div class="card-body">${renderBody(p.body)}</div><button class="like-btn ${liked?'liked':''}" onclick="likeTil(${p.id})">♥ ${lc}</button></div>`;
   }).join('');
 }
 function setTilFilter(tag){state.tilFilter=tag;renderTIL()}
 function likeTil(id){if(state.tilLikes[id])delete state.tilLikes[id];else state.tilLikes[id]=true;lsSet('tilLikes',state.tilLikes);renderTIL()}
 
+/* ── CHALLENGE ── */
+function showComingSoon(){
+  document.getElementById('challenge-area').innerHTML=`
+    <div class="coming-soon-card">
+      <div class="cs-icon">⚡</div>
+      <div class="cs-title">Coming Soon</div>
+      <div class="cs-desc">AI-generated weekly challenges are on the way. Your team will be able to get a fresh coding challenge every week — automatically generated and ready to compete on.</div>
+      <div class="cs-badge">v2.0 feature</div>
+    </div>`;
+}
 function renderChallenge(){
-  const area=document.getElementById('challenge-area');
-  if(!state.challenge){area.innerHTML='<div class="empty"><div class="empty-icon">⚡</div>No challenge yet — click "Generate new" to get one!</div>';}
-  else{const c=state.challenge;const dc={Easy:'diff-easy',Medium:'diff-medium',Hard:'diff-hard'}[c.difficulty]||'diff-medium';area.innerHTML=`<div class="challenge-hero"><div class="challenge-week">Week of ${c.week}</div><div class="challenge-title">${c.title}</div><div class="challenge-desc">${c.description}</div><div class="challenge-meta"><span class="pill ${dc}">${c.difficulty}</span><span class="pill" style="background:var(--purple-lt);color:var(--purple-dk);border:1px solid var(--lavender)">${c.language}</span></div></div>`;}
+  document.getElementById('challenge-area').innerHTML=`
+    <div class="coming-soon-card">
+      <div class="cs-icon">⚡</div>
+      <div class="cs-title">Coming Soon</div>
+      <div class="cs-desc">AI-generated weekly challenges are on the way. Your team will be able to get a fresh coding challenge every week — automatically generated and ready to compete on.</div>
+      <div class="cs-badge">v2.0 feature</div>
+    </div>`;
   const sg=document.getElementById('submissions-grid');
   if(!state.submissions.length){sg.innerHTML='<div class="empty" style="padding:20px 0">No submissions yet — be the first!</div>';return}
   sg.innerHTML=state.submissions.slice().reverse().map(s=>{const voted=!!state.subVotes[s.id];const vc=s.votes+(voted?1:0);return`<div class="sub-card"><div style="display:flex;align-items:center;justify-content:space-between;gap:12px"><div class="card-meta"><div class="avatar ${avColor(s.author)}" style="width:26px;height:26px;font-size:11px">${initials(s.author)}</div><div class="card-author">${s.author||'Anonymous'}</div></div><button class="vote-btn ${voted?'voted':''}" onclick="voteSubmission(${s.id})">👍 ${vc}</button></div><div class="sub-code">${s.code}</div></div>`;}).join('');
 }
 function voteSubmission(id){if(state.subVotes[id])delete state.subVotes[id];else state.subVotes[id]=true;lsSet('subVotes',state.subVotes);renderChallenge()}
 
-async function generateChallenge(){
-  document.getElementById('challenge-area').innerHTML='<div class="loading">✨ Generating challenge with AI...</div>';
-  try{
-    const resp=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,messages:[{role:'user',content:'Generate a fun weekly coding challenge for a software dev team. Return ONLY valid JSON (no markdown, no backticks) with: title (short punchy name), description (2-3 sentences, fun and practical), difficulty (Easy, Medium, or Hard), language (choose from: Any, C#, JavaScript, TypeScript, Python, React, SQL, Docker). Make it creative and relevant to real dev work.'}]})});
-    const data=await resp.json();
-    const text=data.content.map(i=>i.text||'').join('');
-    const parsed=JSON.parse(text.replace(/```json|```/g,'').trim());
-    state.challenge={...parsed,week:new Date().toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}),id:Date.now()};
-    state.submissions=[];
-    lsSet('challenge',state.challenge);lsSet('submissions',[]);
-  }catch(e){document.getElementById('challenge-area').innerHTML='<div class="empty">Could not generate — try again!</div>';return;}
-  renderChallenge();
-}
-
+/* ── BUGS ── */
 function renderBugs(){
   const grid=document.getElementById('bugs-grid');
   if(!state.bugs.length){grid.innerHTML='<div class="empty"><div class="empty-icon">🐛</div>No bugs enshrined yet.</div>';return}
@@ -365,6 +365,7 @@ function renderBugs(){
 }
 function likeBug(id){if(state.bugLikes[id])delete state.bugLikes[id];else state.bugLikes[id]=true;lsSet('bugLikes',state.bugLikes);renderBugs()}
 
+/* ── JOKES ── */
 function renderJokes(){
   const j=JOKES[state.jokeIdx];
   document.getElementById('joke-area').innerHTML=`<div class="joke-big"><div class="joke-q">${j.q}</div><button class="btn btn-ghost" id="reveal-btn" onclick="revealJoke(this)">Reveal punchline</button><div class="joke-a" id="joke-ans">${j.a}</div></div>`;
@@ -376,30 +377,26 @@ function revealJoke(btn){document.getElementById('joke-ans').classList.add('show
 function nextJoke(){state.jokeIdx=(state.jokeIdx+1)%JOKES.length;renderJokes()}
 function voteJoke(id){if(state.jokeVotes[id])delete state.jokeVotes[id];else state.jokeVotes[id]=true;lsSet('jokeVotes',state.jokeVotes);renderJokes()}
 
+/* ── MODAL ── */
 function tagSelectHtml(fid){
   const tags=allTags();
-  return`<select id="${fid}">${tags.map(t=>`<option value="${t}">${t}</option>`).join('')}</select><div style="display:flex;gap:6px;margin-top:6px"><input type="text" id="${fid}-new" placeholder="Add a new tag..." style="flex:1"><button type="button" class="btn btn-ghost" style="padding:7px 12px;font-size:12px;font-family:'DM Sans',sans-serif" onclick="addTag('${fid}')">+ Add</button></div>`;
+  return`<select id="${fid}">${tags.map(t=>`<option value="${t}">${t}</option>`).join('')}</select><div style="display:flex;gap:6px;margin-top:6px"><input type="text" id="${fid}-new" placeholder="Add a new tag..."><button type="button" class="btn btn-ghost" style="padding:7px 12px;font-size:12px;font-family:'DM Sans',sans-serif;flex-shrink:0" onclick="addTag('${fid}')">+ Add</button></div>`;
 }
 function addTag(fid){
-  const inp=document.getElementById(fid+'-new');
-  const val=inp.value.trim();
-  if(!val)return;
+  const inp=document.getElementById(fid+'-new');const val=inp.value.trim();if(!val)return;
   if(!state.customTags.includes(val)&&!DEFAULT_TAGS.includes(val)){state.customTags.push(val);lsSet('customTags',state.customTags);}
   const sel=document.getElementById(fid);
   if(![...sel.options].find(o=>o.value===val)){const opt=document.createElement('option');opt.value=val;opt.textContent=val;sel.appendChild(opt);}
   sel.value=val;inp.value='';
 }
-
 const MODALS={
   til:{title:'Share what you learned',html:()=>`<label class="anon-row"><input type="checkbox" id="m-anon"> Post anonymously</label><div class="field" id="m-name-wrap"><label>Your name</label><input type="text" id="m-name" placeholder="e.g. Alex"></div><div class="field"><label>The TIL</label><textarea id="m-body" placeholder="Use backticks for \`code\`..."></textarea></div><div class="field"><label>Tag</label>${tagSelectHtml('m-tag')}</div>`},
   submit:{title:'Submit your solution',html:()=>`<label class="anon-row"><input type="checkbox" id="m-anon"> Submit anonymously</label><div class="field" id="m-name-wrap"><label>Your name</label><input type="text" id="m-name" placeholder="e.g. Alex"></div><div class="field"><label>Your solution</label><textarea id="m-body" placeholder="Paste your code or describe your approach..." style="height:120px;font-family:'DM Mono',monospace;font-size:12px"></textarea></div>`},
   bug:{title:'Add to the hall of fame',html:()=>`<label class="anon-row"><input type="checkbox" id="m-anon"> Post anonymously</label><div class="field" id="m-name-wrap"><label>Your name</label><input type="text" id="m-name" placeholder="e.g. Alex"></div><div class="field"><label>Bug title</label><input type="text" id="m-title" placeholder="Short punchy title"></div><div class="field"><label>The story</label><textarea id="m-body" placeholder="What happened? The more painful the better..."></textarea></div><div class="field"><label>Severity</label><select id="m-sev"><option value="critical">Critical</option><option value="cursed">Cursed</option><option value="baffling">Baffling</option><option value="silly">Silly</option></select></div>`},
   joke:{title:'Submit a dev joke',html:()=>`<div class="field"><label>Setup</label><input type="text" id="m-setup" placeholder="Why do programmers..."></div><div class="field"><label>Punchline</label><input type="text" id="m-punchline" placeholder="..."></div>`}
 };
-
 function openModal(type){
-  currentModal=type;
-  const cfg=MODALS[type];
+  currentModal=type;const cfg=MODALS[type];
   document.getElementById('modal-title').textContent=cfg.title;
   document.getElementById('modal-body').innerHTML=cfg.html()+`<div class="modal-actions"><button class="btn-cancel" onclick="closeModal()">Cancel</button><button class="btn btn-primary" onclick="submitModal()">Post it</button></div>`;
   const anon=document.getElementById('m-anon');
