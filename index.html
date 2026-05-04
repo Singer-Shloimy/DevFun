@@ -18,6 +18,8 @@
   --blue:#2563eb;--blue-lt:#dbeafe;
   --pink:#db2777;--pink-lt:#fce7f3;
   --teal:#0d9488;--teal-lt:#ccfbf1;
+  --orange:#ea580c;--orange-lt:#ffedd5;
+  --indigo:#4338ca;--indigo-lt:#e0e7ff;
   --radius:14px;--radius-sm:8px;
   --shadow:0 1px 3px rgba(110,80,180,0.08),0 4px 16px rgba(110,80,180,0.06);
   --shadow-sm:0 1px 2px rgba(110,80,180,0.06);
@@ -27,7 +29,7 @@ html{font-size:16px}
 body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;line-height:1.6}
 .app{display:flex;min-height:100vh}
 
-.sidebar{width:230px;background:var(--surface);border-right:1px solid var(--border);display:flex;flex-direction:column;position:sticky;top:0;height:100vh;flex-shrink:0;box-shadow:2px 0 12px rgba(110,80,180,0.05)}
+.sidebar{width:230px;background:var(--surface);border-right:1px solid var(--border);display:flex;flex-direction:column;position:sticky;top:0;height:100vh;flex-shrink:0;box-shadow:2px 0 12px rgba(110,80,180,0.05);overflow-y:auto}
 .logo{padding:22px 20px 18px;border-bottom:1px solid var(--border)}
 .logo-top{display:flex;align-items:center;gap:10px}
 .logo-icon{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,var(--purple),var(--purple2));display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:800;font-size:15px;color:white;flex-shrink:0}
@@ -40,13 +42,14 @@ nav{padding:12px 0;flex:1}
 .nav-item.active{color:var(--purple);border-left-color:var(--purple);background:var(--purple-lt);font-weight:600}
 .nav-dot{width:28px;height:28px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
 .nav-badge{font-size:10px;font-family:'DM Mono',monospace;padding:2px 7px;border-radius:99px;background:var(--purple-lt);color:var(--purple);border:1px solid var(--lavender);margin-left:auto}
+.nav-new{font-size:10px;font-family:'DM Mono',monospace;padding:2px 7px;border-radius:99px;background:var(--green-lt);color:var(--green);border:1px solid #6ee7b7;margin-left:auto}
 
-.main{flex:1;padding:36px 40px;max-width:860px}
+.main{flex:1;padding:36px 40px;max-width:900px;overflow-y:auto}
 .section{display:none;animation:fadeIn 0.18s ease}
 .section.active{display:block}
 @keyframes fadeIn{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
 
-.page-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:28px;gap:16px;flex-wrap:wrap}
+.page-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:24px;gap:16px;flex-wrap:wrap}
 .page-title{font-family:'Syne',sans-serif;font-size:26px;font-weight:800;letter-spacing:-0.5px;color:var(--text)}
 .page-desc{font-size:14px;color:var(--muted);margin-top:3px}
 
@@ -64,12 +67,7 @@ nav{padding:12px 0;flex:1}
 .card-top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:10px}
 .card-meta{display:flex;align-items:center;gap:10px}
 .avatar{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;font-family:'Syne',sans-serif}
-.av0{background:var(--purple-lt);color:var(--purple)}
-.av1{background:var(--blue-lt);color:var(--blue)}
-.av2{background:var(--teal-lt);color:var(--teal)}
-.av3{background:var(--pink-lt);color:var(--pink)}
-.av4{background:var(--amber-lt);color:var(--amber)}
-.av-anon{background:var(--gray-lt);color:var(--gray)}
+.av0{background:var(--purple-lt);color:var(--purple)}.av1{background:var(--blue-lt);color:var(--blue)}.av2{background:var(--teal-lt);color:var(--teal)}.av3{background:var(--pink-lt);color:var(--pink)}.av4{background:var(--amber-lt);color:var(--amber)}.av-anon{background:var(--gray-lt);color:var(--gray)}
 .card-author{font-size:13px;font-weight:600;color:var(--text)}
 .card-time{font-size:11px;color:var(--hint);font-family:'DM Mono',monospace}
 .card-body{font-size:14px;color:#4a4660;line-height:1.65;margin-bottom:12px}
@@ -81,9 +79,6 @@ nav{padding:12px 0;flex:1}
 .sev-cursed{background:var(--purple-lt);color:var(--purple);border-color:var(--lavender)}
 .sev-baffling{background:var(--teal-lt);color:var(--teal);border-color:#5eead4}
 .sev-silly{background:var(--amber-lt);color:var(--amber);border-color:#fcd34d}
-.diff-easy{background:var(--green-lt);color:var(--green);border:1px solid #6ee7b7}
-.diff-medium{background:var(--amber-lt);color:var(--amber);border:1px solid #fcd34d}
-.diff-hard{background:var(--red-lt);color:var(--red);border:1px solid #fca5a5}
 
 .like-btn{display:inline-flex;align-items:center;gap:6px;font-size:12px;padding:4px 12px;border-radius:99px;border:1px solid var(--border2);background:none;color:var(--muted);cursor:pointer;transition:all 0.15s;font-family:'DM Sans',sans-serif}
 .like-btn:hover{border-color:var(--pink);color:var(--pink);background:var(--pink-lt)}
@@ -98,25 +93,19 @@ nav{padding:12px 0;flex:1}
 .btn-ghost{background:var(--surface);color:var(--text);border:1px solid var(--border2)}
 .btn-ghost:hover{background:var(--purple-lt);border-color:var(--purple);color:var(--purple)}
 .btn-soon{background:var(--surface2);color:var(--muted);border:1px solid var(--border);cursor:default;opacity:0.85}
+.btn-sm{padding:6px 13px;font-size:12px}
 
 .empty{text-align:center;padding:48px 0;color:var(--hint);font-size:14px}
 .empty-icon{font-size:30px;margin-bottom:8px}
 
-/* COMING SOON CARD */
 .coming-soon-card{text-align:center;padding:52px 32px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow-sm);position:relative;overflow:hidden}
 .coming-soon-card::before{content:'';position:absolute;top:-60px;right:-60px;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,rgba(124,58,237,0.07) 0%,transparent 70%);pointer-events:none}
-.coming-soon-card::after{content:'';position:absolute;bottom:-40px;left:-40px;width:160px;height:160px;border-radius:50%;background:radial-gradient(circle,rgba(168,85,247,0.06) 0%,transparent 70%);pointer-events:none}
 .cs-icon{width:64px;height:64px;border-radius:18px;background:var(--purple-lt);border:1px solid var(--lavender);display:flex;align-items:center;justify-content:center;font-size:28px;margin:0 auto 18px}
 .cs-title{font-family:'Syne',sans-serif;font-size:22px;font-weight:800;color:var(--text);margin-bottom:10px;letter-spacing:-0.4px}
 .cs-desc{font-size:14px;color:var(--muted);max-width:340px;margin:0 auto;line-height:1.7}
-.cs-badge{margin-top:22px;font-family:'DM Mono',monospace;font-size:11px;color:var(--purple);background:var(--purple-lt);display:inline-block;padding:5px 16px;border-radius:99px;border:1px solid var(--lavender);letter-spacing:0.5px}
+.cs-badge{margin-top:22px;font-family:'DM Mono',monospace;font-size:11px;color:var(--purple);background:var(--purple-lt);display:inline-block;padding:5px 16px;border-radius:99px;border:1px solid var(--lavender)}
 
-.challenge-hero{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:28px;margin-bottom:24px;box-shadow:var(--shadow);border-left:4px solid var(--purple)}
-.challenge-week{font-family:'DM Mono',monospace;font-size:11px;color:var(--purple);background:var(--purple-lt);border:1px solid var(--lavender);padding:3px 10px;border-radius:99px;display:inline-block;margin-bottom:12px}
-.challenge-title{font-family:'Syne',sans-serif;font-size:20px;font-weight:800;margin-bottom:8px;color:var(--text);letter-spacing:-0.3px}
-.challenge-desc{font-size:14px;color:var(--muted);line-height:1.65;margin-bottom:18px}
-.challenge-meta{display:flex;gap:8px;flex-wrap:wrap}
-
+.sub-hdr{font-size:11px;font-weight:700;color:var(--muted);letter-spacing:1px;text-transform:uppercase;font-family:'DM Mono',monospace;margin:28px 0 12px}
 .sub-card{background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius-sm);padding:14px 16px;margin-bottom:10px}
 .sub-code{font-family:'DM Mono',monospace;font-size:12px;color:var(--muted);line-height:1.6;white-space:pre-wrap;word-break:break-word;margin-top:10px}
 
@@ -125,6 +114,33 @@ nav{padding:12px 0;flex:1}
 .joke-a{font-size:15px;color:var(--purple);font-style:italic;font-weight:500;display:none;animation:popIn 0.25s cubic-bezier(0.34,1.56,0.64,1);background:var(--purple-lt);border-radius:var(--radius-sm);padding:12px 20px}
 .joke-a.shown{display:block}
 @keyframes popIn{from{opacity:0;transform:scale(0.92)}to{opacity:1;transform:scale(1)}}
+
+/* NEWS FEED */
+.news-cat-bar{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:22px}
+.news-cat{font-size:12px;padding:6px 14px;border-radius:99px;border:1px solid var(--border2);color:var(--muted);cursor:pointer;transition:all 0.15s;background:var(--surface);font-family:'DM Mono',monospace;display:flex;align-items:center;gap:6px}
+.news-cat:hover{border-color:var(--purple);color:var(--purple)}
+.news-cat.active{font-weight:600}
+.news-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:700px){.news-grid{grid-template-columns:1fr}}
+.news-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:16px 18px;transition:all 0.15s;box-shadow:var(--shadow-sm);display:flex;flex-direction:column;gap:8px;text-decoration:none;color:inherit}
+.news-card:hover{border-color:var(--border2);box-shadow:var(--shadow);transform:translateY(-2px)}
+.news-card-top{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.news-source{font-size:11px;font-family:'DM Mono',monospace;color:var(--muted)}
+.news-date{font-size:11px;font-family:'DM Mono',monospace;color:var(--hint)}
+.news-title{font-size:14px;font-weight:600;color:var(--text);line-height:1.45;font-family:'Syne',sans-serif}
+.news-desc{font-size:13px;color:var(--muted);line-height:1.55;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.news-footer{display:flex;align-items:center;justify-content:space-between;margin-top:auto;padding-top:4px}
+.cat-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.news-loading{text-align:center;padding:60px 0;color:var(--muted)}
+.news-spinner{width:32px;height:32px;border:3px solid var(--border2);border-top-color:var(--purple);border-radius:50%;animation:spin 0.8s linear infinite;margin:0 auto 12px}
+@keyframes spin{to{transform:rotate(360deg)}}
+.news-error{text-align:center;padding:40px 0;color:var(--hint);font-size:14px}
+.feed-meta{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:8px}
+.feed-updated{font-size:11px;font-family:'DM Mono',monospace;color:var(--hint)}
+.cat-section{margin-bottom:32px}
+.cat-section-hdr{display:flex;align-items:center;gap:10px;margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid var(--border)}
+.cat-section-title{font-family:'Syne',sans-serif;font-size:16px;font-weight:700;color:var(--text)}
+.cat-count{font-size:11px;font-family:'DM Mono',monospace;color:var(--muted);background:var(--surface2);padding:2px 8px;border-radius:99px;border:1px solid var(--border)}
 
 .modal-overlay{display:none;position:fixed;inset:0;background:rgba(26,22,40,0.5);z-index:1000;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(3px)}
 .modal-overlay.open{display:flex}
@@ -136,40 +152,29 @@ nav{padding:12px 0;flex:1}
 .field input,.field textarea,.field select{width:100%;background:var(--surface2);border:1px solid var(--border2);border-radius:var(--radius-sm);color:var(--text);font-family:'DM Sans',sans-serif;font-size:14px;padding:10px 12px;outline:none;transition:border-color 0.15s;-webkit-appearance:none}
 .field input:focus,.field textarea:focus,.field select:focus{border-color:var(--purple);background:var(--surface);box-shadow:0 0 0 3px rgba(124,58,237,0.1)}
 .field textarea{height:90px;resize:vertical}
-.field select option{background:var(--surface)}
 .anon-row{display:flex;align-items:center;gap:8px;margin-bottom:16px;font-size:13px;color:var(--muted);cursor:pointer}
 .anon-row input{width:auto;cursor:pointer;accent-color:var(--purple)}
 .modal-actions{display:flex;gap:8px;justify-content:flex-end;margin-top:12px}
 .btn-cancel{background:none;border:1px solid var(--border2);color:var(--muted);font-size:13px;padding:8px 16px;border-radius:var(--radius-sm);cursor:pointer;font-family:'DM Sans',sans-serif;transition:all 0.15s}
 .btn-cancel:hover{color:var(--text);background:var(--surface2)}
 
-.sub-hdr{font-size:11px;font-weight:700;color:var(--muted);letter-spacing:1px;text-transform:uppercase;font-family:'DM Mono',monospace;margin:28px 0 12px}
-
 ::-webkit-scrollbar{width:5px}
 ::-webkit-scrollbar-track{background:transparent}
 ::-webkit-scrollbar-thumb{background:var(--surface3);border-radius:3px}
-
-@media(max-width:640px){
-  .sidebar{width:60px}
-  .logo-name,.logo-sub,.nav-item span,.nav-badge{display:none}
-  .nav-item{justify-content:center;padding:12px}
-  .main{padding:20px 16px}
-}
+@media(max-width:640px){.sidebar{width:60px}.logo-name,.logo-sub,.nav-item span,.nav-badge,.nav-new{display:none}.nav-item{justify-content:center;padding:12px}.main{padding:20px 16px}}
 </style>
 </head>
 <body>
 <div class="app">
   <aside class="sidebar">
     <div class="logo">
-      <div class="logo-top">
-        <div class="logo-icon">Rx</div>
-        <div class="logo-name">DevHub</div>
-      </div>
+      <div class="logo-top"><div class="logo-icon">Rx</div><div class="logo-name">DevHub</div></div>
       <div class="logo-sub">specialty rx team</div>
     </div>
     <nav>
       <div class="nav-section">Sections</div>
       <div class="nav-item active" onclick="showTab('til',this)"><div class="nav-dot">📝</div><span>TIL Board</span></div>
+      <div class="nav-item" onclick="showTab('news',this)"><div class="nav-dot">📰</div><span>News Feed</span><span class="nav-new">New</span></div>
       <div class="nav-item" onclick="showTab('challenge',this)"><div class="nav-dot">⚡</div><span>Weekly Challenge</span><span class="nav-badge">Soon</span></div>
       <div class="nav-item" onclick="showTab('bugs',this)"><div class="nav-dot">🐛</div><span>Bug Hall of Fame</span></div>
       <div class="nav-item" onclick="showTab('jokes',this)"><div class="nav-dot">😂</div><span>Dev Jokes</span></div>
@@ -189,13 +194,31 @@ nav{padding:12px 0;flex:1}
       <div id="til-grid"></div>
     </section>
 
+    <!-- NEWS -->
+    <section id="tab-news" class="section">
+      <div class="page-header">
+        <div><div class="page-title">News Feed</div><div class="page-desc">Latest across hardware, software & dev</div></div>
+        <button class="btn btn-ghost btn-sm" onclick="refreshNews()">↻ Refresh</button>
+      </div>
+      <div class="news-cat-bar" id="news-cat-bar"></div>
+      <div class="feed-meta">
+        <div class="feed-updated" id="feed-updated"></div>
+      </div>
+      <div id="news-content"></div>
+    </section>
+
     <!-- CHALLENGE -->
     <section id="tab-challenge" class="section">
       <div class="page-header">
         <div><div class="page-title">Weekly Challenge</div><div class="page-desc">AI-generated coding challenges for your team</div></div>
-        <button class="btn btn-soon" onclick="showComingSoon()">✨ Generate new</button>
+        <button class="btn btn-soon">✨ Generate new</button>
       </div>
-      <div id="challenge-area"></div>
+      <div class="coming-soon-card">
+        <div class="cs-icon">⚡</div>
+        <div class="cs-title">Coming Soon</div>
+        <div class="cs-desc">AI-generated weekly challenges are on the way. Your team will get a fresh coding challenge every week — automatically generated and ready to compete on.</div>
+        <div class="cs-badge">v2.0 feature</div>
+      </div>
       <div class="sub-hdr">Team Submissions</div>
       <button class="btn btn-ghost" style="margin-bottom:14px" onclick="openModal('submit')">+ Submit your solution</button>
       <div id="submissions-grid"></div>
@@ -225,7 +248,6 @@ nav{padding:12px 0;flex:1}
   </main>
 </div>
 
-<!-- MODAL -->
 <div class="modal-overlay" id="modal-overlay">
   <div class="modal">
     <div class="modal-title" id="modal-title"></div>
@@ -234,6 +256,7 @@ nav{padding:12px 0;flex:1}
 </div>
 
 <script>
+/* ─── CONSTANTS ─── */
 const AVCOLORS=['av0','av1','av2','av3','av4'];
 const JOKES=[
   {q:"Why do programmers prefer dark mode?",a:"Because light attracts bugs."},
@@ -264,18 +287,93 @@ const TAG_STYLES={
   'Tip':'background:#f0fdf4;color:#166534;border-color:#86efac',
 };
 
-let state={tils:[],tilLikes:{},tilFilter:'all',bugs:[],bugLikes:{},submissions:[],subVotes:{},teamJokes:[],jokeVotes:{},jokeIdx:0,customTags:[]};
+/* ─── NEWS CATEGORIES & FEEDS ─── */
+const NEWS_CATS=[
+  {id:'all',    label:'All',        icon:'🌐', color:'#7c3aed', bg:'#ede9fe', border:'#c4b5fd'},
+  {id:'hw',     label:'Hardware',   icon:'🖥️', color:'#0d9488', bg:'#ccfbf1', border:'#5eead4'},
+  {id:'sw',     label:'Software',   icon:'💾', color:'#2563eb', bg:'#dbeafe', border:'#93c5fd'},
+  {id:'web',    label:'Web Dev',    icon:'🌍', color:'#d97706', bg:'#fef3c7', border:'#fcd34d'},
+  {id:'mobile', label:'Mobile',     icon:'📱', color:'#059669', bg:'#d1fae5', border:'#6ee7b7'},
+  {id:'ai',     label:'AI/ML',      icon:'🤖', color:'#7c3aed', bg:'#ede9fe', border:'#c4b5fd'},
+  {id:'sec',    label:'Security',   icon:'🔒', color:'#dc2626', bg:'#fee2e2', border:'#fca5a5'},
+  {id:'dotnet', label:'C#/.NET',    icon:'🔷', color:'#4338ca', bg:'#e0e7ff', border:'#a5b4fc'},
+  {id:'js',     label:'JS/TS',      icon:'⚡', color:'#92400e', bg:'#fef3c7', border:'#fcd34d'},
+  {id:'python', label:'Python',     icon:'🐍', color:'#0f766e', bg:'#ccfbf1', border:'#5eead4'},
+  {id:'devops', label:'DevOps',     icon:'⚙️', color:'#065f46', bg:'#d1fae5', border:'#6ee7b7'},
+  {id:'open',   label:'Open Source',icon:'📦', color:'#db2777', bg:'#fce7f3', border:'#f9a8d4'},
+];
+
+// Using rss2json.com as a CORS proxy to fetch RSS feeds in browser
+const RSS_PROXY = 'https://api.rss2json.com/v1/api.json?rss_url=';
+
+const FEEDS=[
+  // Hardware
+  {cat:'hw', name:'AnandTech',    url:'https://www.anandtech.com/rss/'},
+  {cat:'hw', name:'Tom\'s Hardware', url:'https://www.tomshardware.com/feeds/all'},
+  {cat:'hw', name:'Ars Technica HW',url:'https://feeds.arstechnica.com/arstechnica/gadgets'},
+  // Software
+  {cat:'sw', name:'Ars Technica', url:'https://feeds.arstechnica.com/arstechnica/technology-lab'},
+  {cat:'sw', name:'The Register',  url:'https://www.theregister.com/software/headlines.atom'},
+  {cat:'sw', name:'InfoQ',         url:'https://feed.infoq.com/'},
+  // Web Dev
+  {cat:'web', name:'CSS-Tricks',  url:'https://css-tricks.com/feed/'},
+  {cat:'web', name:'Smashing Mag',url:'https://www.smashingmagazine.com/feed/'},
+  {cat:'web', name:'Dev.to',      url:'https://dev.to/feed'},
+  // Mobile
+  {cat:'mobile', name:'9to5Google',  url:'https://9to5google.com/feed/'},
+  {cat:'mobile', name:'9to5Mac',     url:'https://9to5mac.com/feed/'},
+  // AI/ML
+  {cat:'ai', name:'MIT Tech Review AI', url:'https://www.technologyreview.com/feed/'},
+  {cat:'ai', name:'The Gradient',       url:'https://thegradient.pub/rss/'},
+  {cat:'ai', name:'Towards Data Science',url:'https://towardsdatascience.com/feed'},
+  // Security
+  {cat:'sec', name:'Krebs on Security', url:'https://krebsonsecurity.com/feed/'},
+  {cat:'sec', name:'Dark Reading',      url:'https://www.darkreading.com/rss.xml'},
+  {cat:'sec', name:'Schneier on Sec',   url:'https://www.schneier.com/feed/atom'},
+  // C#/.NET
+  {cat:'dotnet', name:'.NET Blog',      url:'https://devblogs.microsoft.com/dotnet/feed/'},
+  {cat:'dotnet', name:'Scott Hanselman',url:'https://www.hanselman.com/blog/feed/atom'},
+  {cat:'dotnet', name:'C# Corner',      url:'https://www.c-sharpcorner.com/rss/latestarticles.aspx'},
+  // JS/TS
+  {cat:'js', name:'JavaScript Weekly',  url:'https://javascriptweekly.com/rss/'},
+  {cat:'js', name:'2ality (Dr. Axel)',  url:'https://2ality.com/feeds/posts.atom'},
+  {cat:'js', name:'TypeScript Blog',    url:'https://devblogs.microsoft.com/typescript/feed/'},
+  // Python
+  {cat:'python', name:'Real Python',    url:'https://realpython.com/atom.xml'},
+  {cat:'python', name:'Planet Python',  url:'https://planetpython.org/rss20.xml'},
+  // DevOps
+  {cat:'devops', name:'Docker Blog',    url:'https://www.docker.com/blog/feed/'},
+  {cat:'devops', name:'The New Stack',  url:'https://thenewstack.io/feed/'},
+  {cat:'devops', name:'DevOps.com',     url:'https://devops.com/feed/'},
+  // Open Source
+  {cat:'open', name:'GitHub Blog',      url:'https://github.blog/feed/'},
+  {cat:'open', name:'Linux Foundation', url:'https://linuxfoundation.org/feed/'},
+  {cat:'open', name:'Opensource.com',   url:'https://opensource.com/feed'},
+];
+
+/* ─── APP STATE ─── */
+let state={
+  tils:[],tilLikes:{},tilFilter:'all',
+  bugs:[],bugLikes:{},
+  submissions:[],subVotes:{},
+  teamJokes:[],jokeVotes:{},jokeIdx:0,
+  customTags:[],
+  newsItems:[],newsFilter:'all',newsLoaded:false,
+};
 let currentModal='';
 
+/* ─── HELPERS ─── */
 function initials(n){if(!n)return'?';return n.split(' ').map(w=>w[0]).join('').toUpperCase().slice(0,2)}
 function avColor(n){if(!n)return'av-anon';let h=0;for(let c of n)h=(h*31+c.charCodeAt(0))%5;return AVCOLORS[h]}
-function timeAgo(ts){const d=(Date.now()-ts)/1000;if(d<60)return'just now';if(d<3600)return Math.floor(d/60)+'m ago';if(d<86400)return Math.floor(d/3600)+'h ago';return Math.floor(d/86400)+'d ago'}
+function timeAgo(ts){const d=(Date.now()-ts)/1000;if(d<60)return'just now';if(d<3600)return Math.floor(d/60)+'m ago';if(d<86400)return Math.floor(d/3600)+'h ago';if(d<604800)return Math.floor(d/86400)+'d ago';return new Date(ts).toLocaleDateString('en-US',{month:'short',day:'numeric'})}
 function renderBody(t){return t.replace(/`([^`]+)`/g,'<code>$1</code>')}
 function tagPill(t){const s=TAG_STYLES[t]||'background:#ede9fe;color:#5b21b6;border-color:#c4b5fd';return`<span class="pill" style="${s}">${t}</span>`}
-
 function lsGet(k){try{return JSON.parse(localStorage.getItem('devhub_'+k))}catch{return null}}
 function lsSet(k,v){try{localStorage.setItem('devhub_'+k,JSON.stringify(v))}catch{}}
+function stripHtml(h){const d=document.createElement('div');d.innerHTML=h;return d.textContent||''}
+function catInfo(id){return NEWS_CATS.find(c=>c.id===id)||NEWS_CATS[0]}
 
+/* ─── LOAD ─── */
 function loadAll(){
   state.tils=lsGet('tils')||seedTils();
   state.tilLikes=lsGet('tilLikes')||{};
@@ -289,9 +387,7 @@ function loadAll(){
   state.jokeIdx=Math.floor(Math.random()*JOKES.length);
   renderAll();
 }
-
 function allTags(){return[...new Set([...DEFAULT_TAGS,...state.customTags])]}
-
 function seedTils(){return[
   {id:1,author:'Alex',body:'In C#, use `record` types for immutable data models — you get `Equals`, `GetHashCode`, and destructuring for free.',tag:'C#',ts:Date.now()-7200000,likes:6},
   {id:2,author:'Sam',body:'React `useCallback` is only worth it when passing callbacks to memoized children — otherwise it just adds overhead.',tag:'React',ts:Date.now()-18000000,likes:4},
@@ -299,23 +395,23 @@ function seedTils(){return[
   {id:4,author:'Priya',body:'Docker `--no-cache` on your build pipeline prevents stale layers sneaking into prod images.',tag:'Docker',ts:Date.now()-172800000,likes:5},
   {id:5,author:'Jordan',body:'TypeScript `satisfies` validates a value against a type without widening it. Game changer for config objects.',tag:'TS',ts:Date.now()-259200000,likes:7},
 ]}
-
 function seedBugs(){return[
   {id:101,author:'Jordan',title:'Off-by-one took down production',story:'Loop was `i <= arr.length` instead of `i < arr.length`. Spent 3 days hunting it. 3 days.',severity:'critical',ts:Date.now()-864000000,likes:12},
   {id:102,author:'Sam',title:'z-index: 9999999',story:'Found in legacy code with a comment: "DO NOT TOUCH. IF YOU TOUCH IT EVERYTHING BREAKS." Nobody knew why. Still there.',severity:'cursed',ts:Date.now()-1728000000,likes:9},
   {id:103,author:null,title:'The bug that fixed itself',story:'Spent 2 hours debugging. Took a coffee break. Came back. It worked. Committed "fixed bug". Moved on. Still have no idea.',severity:'baffling',ts:Date.now()-3456000000,likes:15},
 ]}
+function renderAll(){renderTIL();renderBugs();renderJokes();renderNewsCatBar()}
 
-function renderAll(){renderTIL();renderChallenge();renderBugs();renderJokes()}
-
+/* ─── TAB ─── */
 function showTab(tab,el){
   document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
   document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
   document.getElementById('tab-'+tab).classList.add('active');
   el.classList.add('active');
+  if(tab==='news'&&!state.newsLoaded) loadNews();
 }
 
-/* ── TIL ── */
+/* ─── TIL ─── */
 function renderTIL(){
   const filtered=state.tilFilter==='all'?state.tils:state.tils.filter(p=>p.tag===state.tilFilter);
   const usedTags=[...new Set(state.tils.map(p=>p.tag))];
@@ -324,7 +420,7 @@ function renderTIL(){
   document.getElementById('til-stats').innerHTML=`<div class="stat-chip"><b>${state.tils.length}</b> posts</div><div class="stat-chip"><b>${authors}</b> contributors</div><div class="stat-chip"><b>${week}</b> this week</div>`;
   document.getElementById('til-tags').innerHTML=`<div class="ftag ${state.tilFilter==='all'?'active':''}" onclick="setTilFilter('all',this)">all</div>`+usedTags.map(t=>`<div class="ftag ${state.tilFilter===t?'active':''}" onclick="setTilFilter('${t}',this)">${t}</div>`).join('');
   const grid=document.getElementById('til-grid');
-  if(!filtered.length){grid.innerHTML='<div class="empty"><div class="empty-icon">📝</div>No TILs for this tag yet. Be the first!</div>';return}
+  if(!filtered.length){grid.innerHTML='<div class="empty"><div class="empty-icon">📝</div>No TILs yet — be the first!</div>';return}
   grid.innerHTML=filtered.slice().reverse().map(p=>{
     const lc=p.likes+(state.tilLikes[p.id]?1:0);const liked=!!state.tilLikes[p.id];
     return`<div class="card"><div class="card-top"><div class="card-meta"><div class="avatar ${avColor(p.author)}">${initials(p.author)}</div><div><div class="card-author">${p.author||'Anonymous'}</div><div class="card-time">${timeAgo(p.ts)}</div></div></div>${tagPill(p.tag)}</div><div class="card-body">${renderBody(p.body)}</div><button class="like-btn ${liked?'liked':''}" onclick="likeTil(${p.id})">♥ ${lc}</button></div>`;
@@ -333,31 +429,127 @@ function renderTIL(){
 function setTilFilter(tag){state.tilFilter=tag;renderTIL()}
 function likeTil(id){if(state.tilLikes[id])delete state.tilLikes[id];else state.tilLikes[id]=true;lsSet('tilLikes',state.tilLikes);renderTIL()}
 
-/* ── CHALLENGE ── */
-function showComingSoon(){
-  document.getElementById('challenge-area').innerHTML=`
-    <div class="coming-soon-card">
-      <div class="cs-icon">⚡</div>
-      <div class="cs-title">Coming Soon</div>
-      <div class="cs-desc">AI-generated weekly challenges are on the way. Your team will be able to get a fresh coding challenge every week — automatically generated and ready to compete on.</div>
-      <div class="cs-badge">v2.0 feature</div>
-    </div>`;
+/* ─── NEWS ─── */
+function renderNewsCatBar(){
+  document.getElementById('news-cat-bar').innerHTML=NEWS_CATS.map(c=>`
+    <div class="news-cat ${state.newsFilter===c.id?'active':''}"
+      style="${state.newsFilter===c.id?`border-color:${c.color};color:${c.color};background:${c.bg}`:''}"
+      onclick="setNewsFilter('${c.id}',this,'${c.color}','${c.bg}')">
+      <span>${c.icon}</span><span>${c.label}</span>
+    </div>`).join('');
 }
-function renderChallenge(){
-  document.getElementById('challenge-area').innerHTML=`
-    <div class="coming-soon-card">
-      <div class="cs-icon">⚡</div>
-      <div class="cs-title">Coming Soon</div>
-      <div class="cs-desc">AI-generated weekly challenges are on the way. Your team will be able to get a fresh coding challenge every week — automatically generated and ready to compete on.</div>
-      <div class="cs-badge">v2.0 feature</div>
-    </div>`;
-  const sg=document.getElementById('submissions-grid');
-  if(!state.submissions.length){sg.innerHTML='<div class="empty" style="padding:20px 0">No submissions yet — be the first!</div>';return}
-  sg.innerHTML=state.submissions.slice().reverse().map(s=>{const voted=!!state.subVotes[s.id];const vc=s.votes+(voted?1:0);return`<div class="sub-card"><div style="display:flex;align-items:center;justify-content:space-between;gap:12px"><div class="card-meta"><div class="avatar ${avColor(s.author)}" style="width:26px;height:26px;font-size:11px">${initials(s.author)}</div><div class="card-author">${s.author||'Anonymous'}</div></div><button class="vote-btn ${voted?'voted':''}" onclick="voteSubmission(${s.id})">👍 ${vc}</button></div><div class="sub-code">${s.code}</div></div>`;}).join('');
+function setNewsFilter(id,el,color,bg){
+  state.newsFilter=id;
+  document.querySelectorAll('.news-cat').forEach(c=>{c.classList.remove('active');c.style.borderColor='';c.style.color='';c.style.background=''});
+  el.classList.add('active');el.style.borderColor=color;el.style.color=color;el.style.background=bg;
+  renderNewsItems();
 }
-function voteSubmission(id){if(state.subVotes[id])delete state.subVotes[id];else state.subVotes[id]=true;lsSet('subVotes',state.subVotes);renderChallenge()}
 
-/* ── BUGS ── */
+async function fetchFeed(feed){
+  try{
+    const url=RSS_PROXY+encodeURIComponent(feed.url)+'&count=8';
+    const res=await fetch(url);
+    const data=await res.json();
+    if(data.status!=='ok')return[];
+    return(data.items||[]).map(item=>({
+      id: item.guid||item.link,
+      cat: feed.cat,
+      source: feed.name,
+      title: stripHtml(item.title||'').trim(),
+      desc: stripHtml(item.description||item.content||'').replace(/\s+/g,' ').trim().slice(0,200),
+      link: item.link,
+      date: item.pubDate?new Date(item.pubDate).getTime():Date.now(),
+      thumb: item.thumbnail||item.enclosure?.link||null,
+    }));
+  }catch{return[]}
+}
+
+async function loadNews(force=false){
+  // Cache for 30 minutes
+  const cached=lsGet('newsCache');
+  const cachedTime=lsGet('newsCacheTime');
+  if(!force&&cached&&cachedTime&&(Date.now()-cachedTime)<1800000){
+    state.newsItems=cached;
+    state.newsLoaded=true;
+    renderNewsItems();
+    document.getElementById('feed-updated').textContent='Updated '+timeAgo(cachedTime);
+    return;
+  }
+  document.getElementById('news-content').innerHTML=`<div class="news-loading"><div class="news-spinner"></div><div style="font-size:14px;color:var(--muted)">Fetching latest news from ${FEEDS.length} sources...</div></div>`;
+  document.getElementById('feed-updated').textContent='';
+  const results=await Promise.allSettled(FEEDS.map(f=>fetchFeed(f)));
+  let all=[];
+  results.forEach(r=>{if(r.status==='fulfilled')all=all.concat(r.value)});
+  // Deduplicate by title similarity & sort newest first
+  const seen=new Set();
+  all=all.filter(item=>{
+    const key=item.title.toLowerCase().slice(0,60);
+    if(seen.has(key))return false;
+    seen.add(key);return true;
+  }).sort((a,b)=>b.date-a.date);
+  if(!all.length){
+    document.getElementById('news-content').innerHTML=`<div class="news-error"><div style="font-size:28px;margin-bottom:8px">📡</div>Could not load feeds right now.<br><br><button class="btn btn-ghost btn-sm" onclick="refreshNews()">Try again</button></div>`;
+    return;
+  }
+  state.newsItems=all;
+  state.newsLoaded=true;
+  lsSet('newsCache',all);
+  lsSet('newsCacheTime',Date.now());
+  renderNewsItems();
+  document.getElementById('feed-updated').textContent='Updated just now · '+all.length+' articles';
+}
+
+function refreshNews(){state.newsLoaded=false;loadNews(true)}
+
+function renderNewsItems(){
+  const el=document.getElementById('news-content');
+  const items=state.newsFilter==='all'?state.newsItems:state.newsItems.filter(i=>i.cat===state.newsFilter);
+  if(!items.length){el.innerHTML='<div class="news-error"><div style="font-size:28px;margin-bottom:8px">🔍</div>No articles in this category yet.</div>';return}
+
+  if(state.newsFilter==='all'){
+    // Group by category
+    const byCat={};
+    items.forEach(item=>{if(!byCat[item.cat])byCat[item.cat]=[];if(byCat[item.cat].length<6)byCat[item.cat].push(item)});
+    const catOrder=['hw','sw','ai','sec','web','dotnet','js','python','mobile','devops','open'];
+    let html='';
+    catOrder.forEach(catId=>{
+      const catItems=byCat[catId];if(!catItems||!catItems.length)return;
+      const c=catInfo(catId);
+      html+=`<div class="cat-section">
+        <div class="cat-section-hdr">
+          <span style="font-size:18px">${c.icon}</span>
+          <div class="cat-section-title">${c.label}</div>
+          <div class="cat-count">${catItems.length} articles</div>
+        </div>
+        <div class="news-grid">${catItems.map(item=>newsCard(item)).join('')}</div>
+      </div>`;
+    });
+    el.innerHTML=html||'<div class="news-error">No articles yet.</div>';
+  } else {
+    el.innerHTML=`<div class="news-grid">${items.slice(0,30).map(item=>newsCard(item)).join('')}</div>`;
+  }
+}
+
+function newsCard(item){
+  const c=catInfo(item.cat);
+  const ago=timeAgo(item.date);
+  const title=(item.title||'').replace(/&amp;/g,'&').replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&#039;/g,"'").replace(/&quot;/g,'"');
+  const desc=(item.desc||'').replace(/&amp;/g,'&').replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&#039;/g,"'").replace(/&quot;/g,'"');
+  return`<a class="news-card" href="${item.link}" target="_blank" rel="noopener">
+    <div class="news-card-top">
+      <span class="news-source" style="color:${c.color}">${c.icon} ${item.source}</span>
+      <span class="news-date">${ago}</span>
+    </div>
+    <div class="news-title">${title}</div>
+    ${desc?`<div class="news-desc">${desc}</div>`:''}
+    <div class="news-footer">
+      <span class="pill" style="background:${c.bg};color:${c.color};border-color:${c.border}">${c.label}</span>
+      <span style="font-size:11px;color:var(--hint);font-family:'DM Mono',monospace">↗ read</span>
+    </div>
+  </a>`;
+}
+
+/* ─── BUGS ─── */
 function renderBugs(){
   const grid=document.getElementById('bugs-grid');
   if(!state.bugs.length){grid.innerHTML='<div class="empty"><div class="empty-icon">🐛</div>No bugs enshrined yet.</div>';return}
@@ -365,7 +557,7 @@ function renderBugs(){
 }
 function likeBug(id){if(state.bugLikes[id])delete state.bugLikes[id];else state.bugLikes[id]=true;lsSet('bugLikes',state.bugLikes);renderBugs()}
 
-/* ── JOKES ── */
+/* ─── JOKES ─── */
 function renderJokes(){
   const j=JOKES[state.jokeIdx];
   document.getElementById('joke-area').innerHTML=`<div class="joke-big"><div class="joke-q">${j.q}</div><button class="btn btn-ghost" id="reveal-btn" onclick="revealJoke(this)">Reveal punchline</button><div class="joke-a" id="joke-ans">${j.a}</div></div>`;
@@ -377,7 +569,7 @@ function revealJoke(btn){document.getElementById('joke-ans').classList.add('show
 function nextJoke(){state.jokeIdx=(state.jokeIdx+1)%JOKES.length;renderJokes()}
 function voteJoke(id){if(state.jokeVotes[id])delete state.jokeVotes[id];else state.jokeVotes[id]=true;lsSet('jokeVotes',state.jokeVotes);renderJokes()}
 
-/* ── MODAL ── */
+/* ─── MODAL ─── */
 function tagSelectHtml(fid){
   const tags=allTags();
   return`<select id="${fid}">${tags.map(t=>`<option value="${t}">${t}</option>`).join('')}</select><div style="display:flex;gap:6px;margin-top:6px"><input type="text" id="${fid}-new" placeholder="Add a new tag..."><button type="button" class="btn btn-ghost" style="padding:7px 12px;font-size:12px;font-family:'DM Sans',sans-serif;flex-shrink:0" onclick="addTag('${fid}')">+ Add</button></div>`;
@@ -409,7 +601,7 @@ function submitModal(){
   const name=anon?null:(document.getElementById('m-name')?.value.trim()||null);
   const body=document.getElementById('m-body')?.value.trim();
   if(currentModal==='til'){if(!body)return;state.tils.push({id:Date.now(),author:name,body,tag:document.getElementById('m-tag').value,ts:Date.now(),likes:0});lsSet('tils',state.tils);closeModal();renderTIL();}
-  else if(currentModal==='submit'){if(!body)return;state.submissions.push({id:Date.now(),author:name,code:body,ts:Date.now(),votes:0});lsSet('submissions',state.submissions);closeModal();renderChallenge();}
+  else if(currentModal==='submit'){if(!body)return;state.submissions.push({id:Date.now(),author:name,code:body,ts:Date.now(),votes:0});lsSet('submissions',state.submissions);closeModal();}
   else if(currentModal==='bug'){const title=document.getElementById('m-title')?.value.trim();if(!title||!body)return;state.bugs.push({id:Date.now(),author:name,title,story:body,severity:document.getElementById('m-sev').value,ts:Date.now(),likes:0});lsSet('bugs',state.bugs);closeModal();renderBugs();}
   else if(currentModal==='joke'){const setup=document.getElementById('m-setup')?.value.trim();const punchline=document.getElementById('m-punchline')?.value.trim();if(!setup||!punchline)return;state.teamJokes.push({id:Date.now(),setup,punchline,votes:0,ts:Date.now()});lsSet('teamJokes',state.teamJokes);closeModal();renderJokes();}
 }
