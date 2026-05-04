@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dev Hub — Specialty Rx</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@400;500&family=DM+Sans:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:        #f5f4f8;
+  --surface:   #ffffff;
+  --surface2:  #f0eef6;
+  --surface3:  #e8e4f2;
+  --border:    rgba(110,80,180,0.12);
+  --border2:   rgba(110,80,180,0.22);
+  --text:      #1a1628;
+  --muted:     #7a6f95;
+  --hint:      #b0a8c8;
+  --purple:    #7c3aed;
+  --purple2:   #a855f7;
+  --purple-lt: #ede9fe;
+  --purple-dk: #5b21b6;
+  --lavender:  #c4b5fd;
+  --gray:      #6b7280;
+  --gray-lt:   #f3f4f6;
+  --green:     #059669; --green-lt: #d1fae5;
+  --red:       #dc2626; --red-lt:   #fee2e2;
+  --amber:     #d97706; --amber-lt: #fef3c7;
+  --blue:      #2563eb; --blue-lt:  #dbeafe;
+  --pink:      #db2777; --pink-lt:  #fce7f3;
+  --teal:      #0d9488; --teal-lt:  #ccfbf1;
+  --radius:    14px;
+  --radius-sm: 8px;
+  --shadow:    0 1px 3px rgba(110,80,180,0.08),0 4px 16px rgba(110,80,180,0.06);
+  --shadow-sm: 0 1px 2px rgba(110,80,180,0.06);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;line-height:1.6}
+.app{display:flex;min-height:100vh}
+
+/* SIDEBAR */
+.sidebar{width:230px;background:var(--surface);border-right:1px solid var(--border);display:flex;flex-direction:column;position:sticky;top:0;height:100vh;flex-shrink:0;box-shadow:2px 0 12px rgba(110,80,180,0.05)}
+.logo{padding:22px 20px 18px;border-bottom:1px solid var(--border)}
+.logo-top{display:flex;align-items:center;gap:10px}
+.logo-icon{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,var(--purple),var(--purple2));display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:800;font-size:15px;color:white;flex-shrink:0;letter-spacing:-0.5px}
+.logo-name{font-family:'Syne',sans-serif;font-weight:800;font-size:18px;color:var(--text);letter-spacing:-0.4px}
+.logo-sub{font-size:11px;color:var(--muted);margin-top:5px;font-family:'DM Mono',monospace}
+nav{padding:12px 0;flex:1}
+.nav-section{font-size:10px;font-family:'DM Mono',monospace;color:var(--hint);letter-spacing:1px;text-transform:uppercase;padding:10px 20px 4px}
+.nav-item{display:flex;align-items:center;gap:11px;padding:10px 20px;font-size:14px;font-weight:500;color:var(--muted);cursor:pointer;transition:all 0.15s;border-left:3px solid transparent}
+.nav-item:hover{color:var(--purple);background:var(--purple-lt)}
+.nav-item.active{color:var(--purple);border-left-color:var(--purple);background:var(--purple-lt);font-weight:600}
+.nav-dot{width:28px;height:28px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
+
+/* MAIN */
+.main{flex:1;padding:36px 40px;max-width:860px}
+.section{display:none;animation:fadeIn 0.18s ease}
+.section.active{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
+
+.page-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:28px;gap:16px;flex-wrap:wrap}
+.page-title{font-family:'Syne',sans-serif;font-size:26px;font-weight:800;letter-spacing:-0.5px;color:var(--text)}
+.page-desc{font-size:14px;color:var(--muted);margin-top:3px}
+
+.stat-row{display:flex;gap:10px;margin-bottom:22px;flex-wrap:wrap}
+.stat-chip{font-size:12px;font-family:'DM Mono',monospace;padding:5px 13px;border-radius:99px;background:var(--surface);border:1px solid var(--border);color:var(--muted);box-shadow:var(--shadow-sm)}
+.stat-chip b{color:var(--purple);font-weight:600}
+
+.tag-row{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:20px}
+.ftag{font-size:12px;padding:4px 12px;border-radius:99px;border:1px solid var(--border2);color:var(--muted);cursor:pointer;transition:all 0.15s;background:var(--surface);font-family:'DM Mono',monospace}
+.ftag:hover{border-color:var(--purple);color:var(--purple)}
+.ftag.active{border-color:var(--purple);color:var(--purple);background:var(--purple-lt);font-weight:500}
+
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:18px 20px;margin-bottom:12px;transition:all 0.15s;box-shadow:var(--shadow-sm)}
+.card:hover{border-color:var(--border2);box-shadow:var(--shadow);transform:translateY(-1px)}
+.card-top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:10px}
+.card-meta{display:flex;align-items:center;gap:10px}
+.avatar{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;font-family:'Syne',sans-serif}
+.av0{background:var(--purple-lt);color:var(--purple)}
+.av1{background:var(--blue-lt);color:var(--blue)}
+.av2{background:var(--teal-lt);color:var(--teal)}
+.av3{background:var(--pink-lt);color:var(--pink)}
+.av4{background:var(--amber-lt);color:var(--amber)}
+.av-anon{background:var(--gray-lt);color:var(--gray)}
+.card-author{font-size:13px;font-weight:600;color:var(--text)}
+.card-time{font-size:11px;color:var(--hint);font-family:'DM Mono',monospace}
+.card-body{font-size:14px;color:#4a4660;line-height:1.65;margin-bottom:12px}
+.card-body code{font-family:'DM Mono',monospace;font-size:12px;background:var(--purple-lt);padding:1px 6px;border-radius:4px;color:var(--purple-dk)}
+.bug-title{font-size:15px;font-weight:700;font-family:'Syne',sans-serif;margin-bottom:6px;color:var(--text)}
+
+.pill{font-size:11px;padding:3px 9px;border-radius:99px;font-family:'DM Mono',monospace;white-space:nowrap;border:1px solid transparent}
+.sev-critical{background:var(--red-lt);color:var(--red);border-color:#fca5a5}
+.sev-cursed{background:var(--purple-lt);color:var(--purple);border-color:var(--lavender)}
+.sev-baffling{background:var(--teal-lt);color:var(--teal);border-color:#5eead4}
+.sev-silly{background:var(--amber-lt);color:var(--amber);border-color:#fcd34d}
+.diff-easy{background:var(--green-lt);color:var(--green);border:1px solid #6ee7b7}
+.diff-medium{background:var(--amber-lt);color:var(--amber);border:1px solid #fcd34d}
+.diff-hard{background:var(--red-lt);color:var(--red);border:1px solid #fca5a5}
+
+.like-btn{display:inline-flex;align-items:center;gap:6px;font-size:12px;padding:4px 12px;border-radius:99px;border:1px solid var(--border2);background:none;color:var(--muted);cursor:pointer;transition:all 0.15s;font-family:'DM Sans',sans-serif}
+.like-btn:hover{border-color:var(--pink);color:var(--pink);background:var(--pink-lt)}
+.like-btn.liked{background:var(--pink-lt);border-color:var(--pink);color:var(--pink)}
+.vote-btn{display:inline-flex;align-items:center;gap:5px;font-size:12px;padding:4px 12px;border-radius:99px;border:1px solid var(--border2);background:none;color:var(--muted);cursor:pointer;transition:all 0.15s;font-family:'DM Sans',sans-serif;white-space:nowrap}
+.vote-btn:hover{border-color:var(--purple);color:var(--purple);background:var(--purple-lt)}
+.vote-btn.voted{background:var(--purple-lt);border-color:var(--purple);color:var(--purple)}
+
+.btn{font-size:13px;font-weight:600;padding:9px 18px;border-radius:var(--radius-sm);border:none;cursor:pointer;transition:all 0.15s;font-family:'Syne',sans-serif;display:inline-flex;align-items:center;gap:7px;letter-spacing:0.1px}
+.btn-primary{background:var(--purple);color:white;box-shadow:0 2px 8px rgba(124,58,237,0.3)}
+.btn-primary:hover{background:var(--purple-dk);transform:translateY(-1px);box-shadow:0 4px 14px rgba(124,58,237,0.35)}
+.btn-ghost{background:var(--surface);color:var(--text);border:1px solid var(--border2)}
+.btn-ghost:hover{background:var(--purple-lt);border-color:var(--purple);color:var(--purple)}
+.btn-ai{background:linear-gradient(135deg,var(--purple),var(--purple2));color:white;box-shadow:0 2px 8px rgba(124,58,237,0.28)}
+.btn-ai:hover{opacity:0.92;transform:translateY(-1px)}
+
+.empty{text-align:center;padding:48px 0;color:var(--hint);font-size:14px}
+.empty-icon{font-size:30px;margin-bottom:8px}
+
+.challenge-hero{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:28px;margin-bottom:24px;box-shadow:var(--shadow);border-left:4px solid var(--purple)}
+.challenge-week{font-family:'DM Mono',monospace;font-size:11px;color:var(--purple);background:var(--purple-lt);border:1px solid var(--lavender);padding:3px 10px;border-radius:99px;display:inline-block;margin-bottom:12px}
+.challenge-title{font-family:'Syne',sans-serif;font-size:20px;font-weight:800;margin-bottom:8px;color:var(--text);letter-spacing:-0.3px}
+.challenge-desc{font-size:14px;color:var(--muted);line-height:1.65;margin-bottom:18px}
+.challenge-meta{display:flex;gap:8px;flex-wrap:wrap}
+
+.sub-card{background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius-sm);padding:14px 16px;margin-bottom:10px}
+.sub-code{font-family:'DM Mono',monospace;font-size:12px;color:var(--muted);line-height:1.6;white-space:pre-wrap;word-break:break-word;margin-top:10px}
+
+.joke-big{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:36px;margin-bottom:20px;text-align:center;box-shadow:var(--shadow);border-top:4px solid var(--purple)}
+.joke-q{font-family:'Syne',sans-serif;font-size:18px;font-weight:700;color:var(--text);margin-bottom:20px;line-height:1.4}
+.joke-a{font-size:15px;color:var(--purple);font-style:italic;font-weight:500;display:none;animation:popIn 0.25s cubic-bezier(0.34,1.56,0.64,1);background:var(--purple-lt);border-radius:var(--radius-sm);padding:12px 20px}
+.joke-a.shown{display:block}
+@keyframes popIn{from{opacity:0;transform:scale(0.92)}to{opacity:1;transform:scale(1)}}
+
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(26,22,40,0.5);z-index:1000;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(3px)}
+.modal-overlay.open{display:flex}
+.modal{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:32px;width:100%;max-width:480px;box-shadow:0 20px 60px rgba(110,80,180,0.18);animation:slideUp 0.2s ease}
+@keyframes slideUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.modal-title{font-family:'Syne',sans-serif;font-size:20px;font-weight:800;margin-bottom:22px;color:var(--text);letter-spacing:-0.3px}
+.field{margin-bottom:14px}
+.field label{font-size:11px;color:var(--muted);display:block;margin-bottom:5px;font-family:'DM Mono',monospace;letter-spacing:0.5px;text-transform:uppercase}
+.field input,.field textarea,.field select{width:100%;background:var(--surface2);border:1px solid var(--border2);border-radius:var(--radius-sm);color:var(--text);font-family:'DM Sans',sans-serif;font-size:14px;padding:10px 12px;outline:none;transition:border-color 0.15s;-webkit-appearance:none}
+.field input:focus,.field textarea:focus,.field select:focus{border-color:var(--purple);background:var(--surface);box-shadow:0 0 0 3px rgba(124,58,237,0.1)}
+.field textarea{height:90px;resize:vertical}
+.field select option{background:var(--surface)}
+.anon-row{display:flex;align-items:center;gap:8px;margin-bottom:16px;font-size:13px;color:var(--muted);cursor:pointer}
+.anon-row input{width:auto;cursor:pointer;accent-color:var(--purple)}
+.modal-actions{display:flex;gap:8px;justify-content:flex-end;margin-top:12px}
+.btn-cancel{background:none;border:1px solid var(--border2);color:var(--muted);font-size:13px;padding:8px 16px;border-radius:var(--radius-sm);cursor:pointer;font-family:'DM Sans',sans-serif;transition:all 0.15s}
+.btn-cancel:hover{color:var(--text);background:var(--surface2)}
+
+.loading{font-size:13px;color:var(--purple);font-family:'DM Mono',monospace;padding:24px 0;animation:pulse 1.2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.3}}
+.sub-hdr{font-size:11px;font-weight:700;color:var(--muted);letter-spacing:1px;text-transform:uppercase;font-family:'DM Mono',monospace;margin:28px 0 12px}
+
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:var(--surface3);border-radius:3px}
+
+@media(max-width:640px){
+  .sidebar{width:60px}
+  .logo-name,.logo-sub,.nav-item span{display:none}
+  .nav-item{justify-content:center;padding:12px}
+  .main{padding:20px 16px}
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar">
+    <div class="logo">
+      <div class="logo-top">
+        <div class="logo-icon">Rx</div>
+        <div class="logo-name">DevHub</div>
+      </div>
+      <div class="logo-sub">specialty rx team</div>
+    </div>
+    <nav>
+      <div class="nav-section">Sections</div>
+      <div class="nav-item active" onclick="showTab('til',this)"><div class="nav-dot">📝</div><span>TIL Board</span></div>
+      <div class="nav-item" onclick="showTab('challenge',this)"><div class="nav-dot">⚡</div><span>Weekly Challenge</span></div>
+      <div class="nav-item" onclick="showTab('bugs',this)"><div class="nav-dot">🐛</div><span>Bug Hall of Fame</span></div>
+      <div class="nav-item" onclick="showTab('jokes',this)"><div class="nav-dot">😂</div><span>Dev Jokes</span></div>
+    </nav>
+  </aside>
+
+  <main class="main">
+    <section id="tab-til" class="section active">
+      <div class="page-header">
+        <div><div class="page-title">TIL Board</div><div class="page-desc">Drop something you learned today</div></div>
+        <button class="btn btn-primary" onclick="openModal('til')">+ New TIL</button>
+      </div>
+      <div class="stat-row" id="til-stats"></div>
+      <div class="tag-row" id="til-tags"></div>
+      <div id="til-grid"></div>
+    </section>
+
+    <section id="tab-challenge" class="section">
+      <div class="page-header">
+        <div><div class="page-title">Weekly Challenge</div><div class="page-desc">AI-generated — compete with your team</div></div>
+        <button class="btn btn-ai" onclick="generateChallenge()">✨ Generate new</button>
+      </div>
+      <div id="challenge-area"></div>
+      <div class="sub-hdr">Team Submissions</div>
+      <button class="btn btn-ghost" style="margin-bottom:14px" onclick="openModal('submit')">+ Submit your solution</button>
+      <div id="submissions-grid"></div>
+    </section>
+
+    <section id="tab-bugs" class="section">
+      <div class="page-header">
+        <div><div class="page-title">Bug Hall of Fame</div><div class="page-desc">Legends of suffering, preserved forever</div></div>
+        <button class="btn btn-primary" onclick="openModal('bug')">+ Add a bug</button>
+      </div>
+      <div id="bugs-grid"></div>
+    </section>
+
+    <section id="tab-jokes" class="section">
+      <div class="page-header">
+        <div><div class="page-title">Dev Jokes</div><div class="page-desc">We laugh so we don't cry</div></div>
+        <button class="btn btn-ghost" onclick="nextJoke()">Next joke →</button>
+      </div>
+      <div id="joke-area"></div>
+      <div class="sub-hdr">Team Joke Submissions</div>
+      <button class="btn btn-ghost" style="margin-bottom:14px" onclick="openModal('joke')">+ Submit a joke</button>
+      <div id="team-jokes-grid"></div>
+    </section>
+  </main>
+</div>
+
+<div class="modal-overlay" id="modal-overlay">
+  <div class="modal">
+    <div class="modal-title" id="modal-title"></div>
+    <div id="modal-body"></div>
+  </div>
+</div>
+
+<script>
+const AVCOLORS=['av0','av1','av2','av3','av4'];
+const JOKES=[
+  {q:"Why do programmers prefer dark mode?",a:"Because light attracts bugs."},
+  {q:"How many programmers does it take to change a light bulb?",a:"None — that's a hardware problem."},
+  {q:"A SQL query walks into a bar and approaches two tables...",a:"Can I join you?"},
+  {q:"Why did the developer go broke?",a:"They used up all their cache."},
+  {q:"What's a programmer's favourite hangout?",a:"Foo Bar."},
+  {q:"Why do Java developers wear glasses?",a:"Because they don't C#."},
+  {q:"Partner says: get milk, if eggs, get a dozen. The programmer returned with...",a:"12 gallons of milk. They had eggs."},
+  {q:"Why did the programmer quit their job?",a:"Because they didn't get arrays."},
+  {q:"How do you comfort a JavaScript bug?",a:"You console it."},
+  {q:"What do you call a dev who doesn't comment their code?",a:"A job security specialist."},
+];
+const DEFAULT_TAGS=['C#','React','Angular','Vue','Docker','JS','TS','Python','CSS','Git','SQL','DevOps','Tip'];
+const TAG_STYLES={
+  'C#':'background:#ede9fe;color:#5b21b6;border-color:#c4b5fd',
+  'React':'background:#dbeafe;color:#1d4ed8;border-color:#93c5fd',
+  'Angular':'background:#fee2e2;color:#b91c1c;border-color:#fca5a5',
+  'Vue':'background:#d1fae5;color:#065f46;border-color:#6ee7b7',
+  'Docker':'background:#dbeafe;color:#1e40af;border-color:#bfdbfe',
+  'JS':'background:#fef3c7;color:#92400e;border-color:#fcd34d',
+  'TS':'background:#dbeafe;color:#1d4ed8;border-color:#93c5fd',
+  'Python':'background:#ccfbf1;color:#0f766e;border-color:#5eead4',
+  'CSS':'background:#ede9fe;color:#6d28d9;border-color:#c4b5fd',
+  'Git':'background:#fce7f3;color:#9d174d;border-color:#f9a8d4',
+  'SQL':'background:#fef3c7;color:#92400e;border-color:#fcd34d',
+  'DevOps':'background:#d1fae5;color:#065f46;border-color:#6ee7b7',
+  'Tip':'background:#f0fdf4;color:#166534;border-color:#86efac',
+};
+
+let state={tils:[],tilLikes:{},tilFilter:'all',bugs:[],bugLikes:{},submissions:[],subVotes:{},challenge:null,teamJokes:[],jokeVotes:{},jokeIdx:0,customTags:[]};
+let currentModal='';
+
+function initials(n){if(!n)return'?';return n.split(' ').map(w=>w[0]).join('').toUpperCase().slice(0,2)}
+function avColor(n){if(!n)return'av-anon';let h=0;for(let c of n)h=(h*31+c.charCodeAt(0))%5;return AVCOLORS[h]}
+function timeAgo(ts){const d=(Date.now()-ts)/1000;if(d<60)return'just now';if(d<3600)return Math.floor(d/60)+'m ago';if(d<86400)return Math.floor(d/3600)+'h ago';return Math.floor(d/86400)+'d ago'}
+function renderBody(t){return t.replace(/`([^`]+)`/g,'<code>$1</code>')}
+function tagPill(t){const s=TAG_STYLES[t]||'background:#ede9fe;color:#5b21b6;border-color:#c4b5fd';return`<span class="pill" style="${s}">${t}</span>`}
+
+function lsGet(k){try{return JSON.parse(localStorage.getItem('devhub_'+k))}catch{return null}}
+function lsSet(k,v){try{localStorage.setItem('devhub_'+k,JSON.stringify(v))}catch{}}
+
+function loadAll(){
+  state.tils=lsGet('tils')||seedTils();
+  state.tilLikes=lsGet('tilLikes')||{};
+  state.bugs=lsGet('bugs')||seedBugs();
+  state.bugLikes=lsGet('bugLikes')||{};
+  state.submissions=lsGet('submissions')||[];
+  state.subVotes=lsGet('subVotes')||{};
+  state.challenge=lsGet('challenge')||null;
+  state.teamJokes=lsGet('teamJokes')||[];
+  state.jokeVotes=lsGet('jokeVotes')||{};
+  state.customTags=lsGet('customTags')||[];
+  state.jokeIdx=Math.floor(Math.random()*JOKES.length);
+  renderAll();
+}
+
+function allTags(){return[...new Set([...DEFAULT_TAGS,...state.customTags])]}
+
+function seedTils(){return[
+  {id:1,author:'Alex',body:'In C#, use `record` types for immutable data models — you get `Equals`, `GetHashCode`, and destructuring for free.',tag:'C#',ts:Date.now()-7200000,likes:6},
+  {id:2,author:'Sam',body:'React `useCallback` is only worth it when passing callbacks to memoized children — otherwise it just adds overhead.',tag:'React',ts:Date.now()-18000000,likes:4},
+  {id:3,author:null,body:'`git stash push -m "name"` lets you actually find your stash later with `git stash list`. Name everything.',tag:'Git',ts:Date.now()-86400000,likes:8},
+  {id:4,author:'Priya',body:'Docker `--no-cache` on your build pipeline prevents stale layers sneaking into prod images.',tag:'Docker',ts:Date.now()-172800000,likes:5},
+  {id:5,author:'Jordan',body:'TypeScript `satisfies` validates a value against a type without widening it. Game changer for config objects.',tag:'TS',ts:Date.now()-259200000,likes:7},
+]}
+
+function seedBugs(){return[
+  {id:101,author:'Jordan',title:'Off-by-one took down production',story:'Loop was `i <= arr.length` instead of `i < arr.length`. Spent 3 days hunting it. 3 days.',severity:'critical',ts:Date.now()-864000000,likes:12},
+  {id:102,author:'Sam',title:'z-index: 9999999',story:'Found in legacy code with a comment: "DO NOT TOUCH. IF YOU TOUCH IT EVERYTHING BREAKS." Nobody knew why. Still there.',severity:'cursed',ts:Date.now()-1728000000,likes:9},
+  {id:103,author:null,title:'The bug that fixed itself',story:'Spent 2 hours debugging. Took a coffee break. Came back. It worked. Committed "fixed bug". Moved on. Still have no idea.',severity:'baffling',ts:Date.now()-3456000000,likes:15},
+]}
+
+function renderAll(){renderTIL();renderChallenge();renderBugs();renderJokes()}
+
+function showTab(tab,el){
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+  document.getElementById('tab-'+tab).classList.add('active');
+  el.classList.add('active');
+}
+
+function renderTIL(){
+  const filtered=state.tilFilter==='all'?state.tils:state.tils.filter(p=>p.tag===state.tilFilter);
+  const usedTags=[...new Set(state.tils.map(p=>p.tag))];
+  const week=state.tils.filter(p=>Date.now()-p.ts<604800000).length;
+  const authors=new Set(state.tils.filter(p=>p.author).map(p=>p.author)).size;
+  document.getElementById('til-stats').innerHTML=`<div class="stat-chip"><b>${state.tils.length}</b> posts</div><div class="stat-chip"><b>${authors}</b> contributors</div><div class="stat-chip"><b>${week}</b> this week</div>`;
+  document.getElementById('til-tags').innerHTML=`<div class="ftag ${state.tilFilter==='all'?'active':''}" onclick="setTilFilter('all',this)">all</div>`+usedTags.map(t=>`<div class="ftag ${state.tilFilter===t?'active':''}" onclick="setTilFilter('${t}',this)">${t}</div>`).join('');
+  const grid=document.getElementById('til-grid');
+  if(!filtered.length){grid.innerHTML='<div class="empty"><div class="empty-icon">📝</div>No TILs for this tag yet. Be the first!</div>';return}
+  grid.innerHTML=filtered.slice().reverse().map(p=>{
+    const lc=p.likes+(state.tilLikes[p.id]?1:0);
+    const liked=!!state.tilLikes[p.id];
+    return`<div class="card"><div class="card-top"><div class="card-meta"><div class="avatar ${avColor(p.author)}">${initials(p.author)}</div><div><div class="card-author">${p.author||'Anonymous'}</div><div class="card-time">${timeAgo(p.ts)}</div></div></div>${tagPill(p.tag)}</div><div class="card-body">${renderBody(p.body)}</div><button class="like-btn ${liked?'liked':''}" onclick="likeTil(${p.id})">♥ ${lc}</button></div>`;
+  }).join('');
+}
+function setTilFilter(tag){state.tilFilter=tag;renderTIL()}
+function likeTil(id){if(state.tilLikes[id])delete state.tilLikes[id];else state.tilLikes[id]=true;lsSet('tilLikes',state.tilLikes);renderTIL()}
+
+function renderChallenge(){
+  const area=document.getElementById('challenge-area');
+  if(!state.challenge){area.innerHTML='<div class="empty"><div class="empty-icon">⚡</div>No challenge yet — click "Generate new" to get one!</div>';}
+  else{const c=state.challenge;const dc={Easy:'diff-easy',Medium:'diff-medium',Hard:'diff-hard'}[c.difficulty]||'diff-medium';area.innerHTML=`<div class="challenge-hero"><div class="challenge-week">Week of ${c.week}</div><div class="challenge-title">${c.title}</div><div class="challenge-desc">${c.description}</div><div class="challenge-meta"><span class="pill ${dc}">${c.difficulty}</span><span class="pill" style="background:var(--purple-lt);color:var(--purple-dk);border:1px solid var(--lavender)">${c.language}</span></div></div>`;}
+  const sg=document.getElementById('submissions-grid');
+  if(!state.submissions.length){sg.innerHTML='<div class="empty" style="padding:20px 0">No submissions yet — be the first!</div>';return}
+  sg.innerHTML=state.submissions.slice().reverse().map(s=>{const voted=!!state.subVotes[s.id];const vc=s.votes+(voted?1:0);return`<div class="sub-card"><div style="display:flex;align-items:center;justify-content:space-between;gap:12px"><div class="card-meta"><div class="avatar ${avColor(s.author)}" style="width:26px;height:26px;font-size:11px">${initials(s.author)}</div><div class="card-author">${s.author||'Anonymous'}</div></div><button class="vote-btn ${voted?'voted':''}" onclick="voteSubmission(${s.id})">👍 ${vc}</button></div><div class="sub-code">${s.code}</div></div>`;}).join('');
+}
+function voteSubmission(id){if(state.subVotes[id])delete state.subVotes[id];else state.subVotes[id]=true;lsSet('subVotes',state.subVotes);renderChallenge()}
+
+async function generateChallenge(){
+  document.getElementById('challenge-area').innerHTML='<div class="loading">✨ Generating challenge with AI...</div>';
+  try{
+    const resp=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,messages:[{role:'user',content:'Generate a fun weekly coding challenge for a software dev team. Return ONLY valid JSON (no markdown, no backticks) with: title (short punchy name), description (2-3 sentences, fun and practical), difficulty (Easy, Medium, or Hard), language (choose from: Any, C#, JavaScript, TypeScript, Python, React, SQL, Docker). Make it creative and relevant to real dev work.'}]})});
+    const data=await resp.json();
+    const text=data.content.map(i=>i.text||'').join('');
+    const parsed=JSON.parse(text.replace(/```json|```/g,'').trim());
+    state.challenge={...parsed,week:new Date().toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}),id:Date.now()};
+    state.submissions=[];
+    lsSet('challenge',state.challenge);lsSet('submissions',[]);
+  }catch(e){document.getElementById('challenge-area').innerHTML='<div class="empty">Could not generate — try again!</div>';return;}
+  renderChallenge();
+}
+
+function renderBugs(){
+  const grid=document.getElementById('bugs-grid');
+  if(!state.bugs.length){grid.innerHTML='<div class="empty"><div class="empty-icon">🐛</div>No bugs enshrined yet.</div>';return}
+  grid.innerHTML=state.bugs.slice().reverse().map(b=>{const liked=!!state.bugLikes[b.id];const lc=b.likes+(liked?1:0);const sc={critical:'sev-critical',cursed:'sev-cursed',baffling:'sev-baffling',silly:'sev-silly'}[b.severity]||'sev-silly';return`<div class="card"><div class="card-top"><div class="card-meta"><div class="avatar ${avColor(b.author)}">${initials(b.author)}</div><div><div class="card-author">${b.author||'Anonymous'}</div><div class="card-time">${timeAgo(b.ts)}</div></div></div><span class="pill ${sc}">${b.severity}</span></div><div class="bug-title">${b.title}</div><div class="card-body">${renderBody(b.story)}</div><button class="like-btn ${liked?'liked':''}" onclick="likeBug(${b.id})">♥ ${lc}</button></div>`;}).join('');
+}
+function likeBug(id){if(state.bugLikes[id])delete state.bugLikes[id];else state.bugLikes[id]=true;lsSet('bugLikes',state.bugLikes);renderBugs()}
+
+function renderJokes(){
+  const j=JOKES[state.jokeIdx];
+  document.getElementById('joke-area').innerHTML=`<div class="joke-big"><div class="joke-q">${j.q}</div><button class="btn btn-ghost" id="reveal-btn" onclick="revealJoke(this)">Reveal punchline</button><div class="joke-a" id="joke-ans">${j.a}</div></div>`;
+  const tg=document.getElementById('team-jokes-grid');
+  if(!state.teamJokes.length){tg.innerHTML='<div class="empty" style="padding:16px 0">No team jokes yet — add one!</div>';return}
+  tg.innerHTML=state.teamJokes.slice().reverse().map(j=>{const voted=!!state.jokeVotes[j.id];const vc=j.votes+(voted?1:0);return`<div class="card"><div style="display:flex;align-items:flex-start;justify-content:space-between;gap:16px"><div><div class="card-body" style="margin-bottom:6px;font-weight:500;color:var(--text)">${j.setup}</div><div style="font-size:13px;color:var(--purple);font-style:italic">${j.punchline}</div></div><button class="vote-btn ${voted?'voted':''}" onclick="voteJoke(${j.id})">😄 ${vc}</button></div></div>`;}).join('');
+}
+function revealJoke(btn){document.getElementById('joke-ans').classList.add('shown');btn.style.display='none'}
+function nextJoke(){state.jokeIdx=(state.jokeIdx+1)%JOKES.length;renderJokes()}
+function voteJoke(id){if(state.jokeVotes[id])delete state.jokeVotes[id];else state.jokeVotes[id]=true;lsSet('jokeVotes',state.jokeVotes);renderJokes()}
+
+function tagSelectHtml(fid){
+  const tags=allTags();
+  return`<select id="${fid}">${tags.map(t=>`<option value="${t}">${t}</option>`).join('')}</select><div style="display:flex;gap:6px;margin-top:6px"><input type="text" id="${fid}-new" placeholder="Add a new tag..." style="flex:1"><button type="button" class="btn btn-ghost" style="padding:7px 12px;font-size:12px;font-family:'DM Sans',sans-serif" onclick="addTag('${fid}')">+ Add</button></div>`;
+}
+function addTag(fid){
+  const inp=document.getElementById(fid+'-new');
+  const val=inp.value.trim();
+  if(!val)return;
+  if(!state.customTags.includes(val)&&!DEFAULT_TAGS.includes(val)){state.customTags.push(val);lsSet('customTags',state.customTags);}
+  const sel=document.getElementById(fid);
+  if(![...sel.options].find(o=>o.value===val)){const opt=document.createElement('option');opt.value=val;opt.textContent=val;sel.appendChild(opt);}
+  sel.value=val;inp.value='';
+}
+
+const MODALS={
+  til:{title:'Share what you learned',html:()=>`<label class="anon-row"><input type="checkbox" id="m-anon"> Post anonymously</label><div class="field" id="m-name-wrap"><label>Your name</label><input type="text" id="m-name" placeholder="e.g. Alex"></div><div class="field"><label>The TIL</label><textarea id="m-body" placeholder="Use backticks for \`code\`..."></textarea></div><div class="field"><label>Tag</label>${tagSelectHtml('m-tag')}</div>`},
+  submit:{title:'Submit your solution',html:()=>`<label class="anon-row"><input type="checkbox" id="m-anon"> Submit anonymously</label><div class="field" id="m-name-wrap"><label>Your name</label><input type="text" id="m-name" placeholder="e.g. Alex"></div><div class="field"><label>Your solution</label><textarea id="m-body" placeholder="Paste your code or describe your approach..." style="height:120px;font-family:'DM Mono',monospace;font-size:12px"></textarea></div>`},
+  bug:{title:'Add to the hall of fame',html:()=>`<label class="anon-row"><input type="checkbox" id="m-anon"> Post anonymously</label><div class="field" id="m-name-wrap"><label>Your name</label><input type="text" id="m-name" placeholder="e.g. Alex"></div><div class="field"><label>Bug title</label><input type="text" id="m-title" placeholder="Short punchy title"></div><div class="field"><label>The story</label><textarea id="m-body" placeholder="What happened? The more painful the better..."></textarea></div><div class="field"><label>Severity</label><select id="m-sev"><option value="critical">Critical</option><option value="cursed">Cursed</option><option value="baffling">Baffling</option><option value="silly">Silly</option></select></div>`},
+  joke:{title:'Submit a dev joke',html:()=>`<div class="field"><label>Setup</label><input type="text" id="m-setup" placeholder="Why do programmers..."></div><div class="field"><label>Punchline</label><input type="text" id="m-punchline" placeholder="..."></div>`}
+};
+
+function openModal(type){
+  currentModal=type;
+  const cfg=MODALS[type];
+  document.getElementById('modal-title').textContent=cfg.title;
+  document.getElementById('modal-body').innerHTML=cfg.html()+`<div class="modal-actions"><button class="btn-cancel" onclick="closeModal()">Cancel</button><button class="btn btn-primary" onclick="submitModal()">Post it</button></div>`;
+  const anon=document.getElementById('m-anon');
+  if(anon)anon.addEventListener('change',function(){const w=document.getElementById('m-name-wrap');if(w)w.style.display=this.checked?'none':''});
+  document.getElementById('modal-overlay').classList.add('open');
+}
+function closeModal(){document.getElementById('modal-overlay').classList.remove('open')}
+function submitModal(){
+  const anon=document.getElementById('m-anon')?.checked;
+  const name=anon?null:(document.getElementById('m-name')?.value.trim()||null);
+  const body=document.getElementById('m-body')?.value.trim();
+  if(currentModal==='til'){if(!body)return;state.tils.push({id:Date.now(),author:name,body,tag:document.getElementById('m-tag').value,ts:Date.now(),likes:0});lsSet('tils',state.tils);closeModal();renderTIL();}
+  else if(currentModal==='submit'){if(!body)return;state.submissions.push({id:Date.now(),author:name,code:body,ts:Date.now(),votes:0});lsSet('submissions',state.submissions);closeModal();renderChallenge();}
+  else if(currentModal==='bug'){const title=document.getElementById('m-title')?.value.trim();if(!title||!body)return;state.bugs.push({id:Date.now(),author:name,title,story:body,severity:document.getElementById('m-sev').value,ts:Date.now(),likes:0});lsSet('bugs',state.bugs);closeModal();renderBugs();}
+  else if(currentModal==='joke'){const setup=document.getElementById('m-setup')?.value.trim();const punchline=document.getElementById('m-punchline')?.value.trim();if(!setup||!punchline)return;state.teamJokes.push({id:Date.now(),setup,punchline,votes:0,ts:Date.now()});lsSet('teamJokes',state.teamJokes);closeModal();renderJokes();}
+}
+document.getElementById('modal-overlay').addEventListener('click',function(e){if(e.target===this)closeModal()});
+loadAll();
+</script>
+</body>
+</html>
